@@ -1,0 +1,56 @@
+services:
+  database:
+    container_name: npp-db
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+     # /var/lib/postgresql/data
+    networks:
+      - npp-iot-network
+
+  node-red:
+    container_name: npp-nodered
+    build:
+      context: ./node-red
+      dockerfile: Dockerfile
+    image: npp-iot/node-red:latest
+    ports:
+      - "1880:1880"
+    volumes:
+      - ./node-red/data:/data
+    networks:
+      - npp-iot-network
+
+  mosquitto:
+    container_name: npp-mosquitto
+    image: eclipse-mosquitto
+    ports:
+      - "1883:1883"
+    restart: always
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/log:/mosquitto/log
+      - ./mosquitto/data/:/mosquitto/data
+    networks:
+      - npp-iot-network
+
+  influxdb:
+    container_name: npp-influxdb
+    image: influxdb:2.8.0
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb2
+      - ./influxdb/config:/etc/influxdb2
+    networks:
+      - npp-iot-network
+
+networks:
+  npp-iot-network:
+    driver: bridge
