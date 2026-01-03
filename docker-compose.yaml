@@ -48,6 +48,32 @@ services:
     volumes:
       - ./influxdb/data:/var/lib/influxdb2
       - ./influxdb/config:/etc/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=admin1234
+      - DOCKER_INFLUXDB_INIT_ORG=univaq
+      - DOCKER_INFLUXDB_INIT_BUCKET=npp
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=49s_MTlVPDvDs58kjmXT_GMNI3gB2AzfQ-__AmynELGapRUG0SpPM0NPdRcg9V-tyj3n--W5_nGSMVygL_ZaZA==
+    networks:
+      - npp-iot-network
+
+  grafana:
+    container_name: npp-grafana
+    image: grafana/grafana
+    restart: always
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=
+    links:
+      - influxdb
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana:/var/lib/grafana
     networks:
       - npp-iot-network
 
