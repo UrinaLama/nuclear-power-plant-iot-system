@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - ./database:/docker-entrypoint-initdb.d
-     # /var/lib/postgresql/data
+      # /var/lib/postgresql/data
     networks:
       - npp-iot-network
 
@@ -58,6 +58,8 @@ services:
     networks:
       - npp-iot-network
 
+  # Run this in the local machine before:
+  #     sudo chown -R 472:472 ./grafana/
   grafana:
     container_name: npp-grafana
     image: grafana/grafana
@@ -74,6 +76,21 @@ services:
       - "3000:3000"
     volumes:
       - ./grafana:/var/lib/grafana
+    networks:
+      - npp-iot-network
+
+  simulator:
+    container_name: npp-simulator
+    build:
+      context: ./simulator
+      dockerfile: Dockerfile
+    image: npp-iot/simulator:latest
+    environment:
+      - MQTT_HOST=mosquitto
+      - MQTT_PORT=1883
+      - MQTT_TOPIC=data
+    volumes:
+      - ./simulator/data:/data
     networks:
       - npp-iot-network
 
