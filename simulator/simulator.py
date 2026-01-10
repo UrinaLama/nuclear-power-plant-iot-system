@@ -2,6 +2,7 @@ import os
 import csv
 import random
 import logging
+import time
 
 import paho.mqtt.client as mqtt
 
@@ -42,6 +43,8 @@ def publish(client, csv_path):
                 topic = f"{os.getenv('MQTT_TOPIC', 'data')}/{key}"
 
                 client.publish(topic, val)
+
+            time.sleep(5)
 
 
 def simulate():
