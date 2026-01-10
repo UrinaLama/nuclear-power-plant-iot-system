@@ -20,6 +20,10 @@ services:
       context: ./node-red
       dockerfile: Dockerfile
     image: npp-iot/node-red:latest
+    depends_on:
+      - mosquitto
+      - influxdb
+      - database
     ports:
       - "1880:1880"
     volumes:
@@ -85,6 +89,8 @@ services:
       context: ./simulator
       dockerfile: Dockerfile
     image: npp-iot/simulator:latest
+    depends_on:
+      - mosquitto
     environment:
       - MQTT_HOST=mosquitto
       - MQTT_PORT=1883

@@ -41,8 +41,7 @@ def publish(client, csv_path):
 
                 topic = f"{os.getenv('MQTT_TOPIC', 'data')}/{key}"
 
-                (result, mid) = client.publish(topic, val)
-                logging.info(f"Publish request for '{val}' (mid {mid}) sent. Result code: {result}")
+                client.publish(topic, val)
 
 
 def simulate():
