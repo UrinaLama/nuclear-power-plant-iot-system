@@ -1,0 +1,551 @@
+[
+    {
+        "id": "43a873bd561270b5",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a24ce6732882ebc7",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3e670c6493b8376d",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "npp-mosquitto",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "cd39a6ca1e001ad2",
+        "type": "ui_tab",
+        "name": "NPP",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a6bae3ce087b14bb",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "mqtt_broker",
+        "type": "mqtt-broker",
+        "name": "Mosquitto NPP",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "nodered-client",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dashboard_tab",
+        "type": "ui_tab",
+        "name": "NPP Dashboard",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "dashboard_group",
+        "type": "ui_group",
+        "name": "MQTT Data",
+        "tab": "dashboard_tab",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "5fc30ce30938e5b2",
+        "type": "ui_group",
+        "name": "MQTT Data",
+        "tab": "cd39a6ca1e001ad2",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3d40a9f54b8ab11f",
+        "type": "influxdb",
+        "hostname": "npp-influxdb",
+        "port": 8086,
+        "protocol": "http",
+        "database": "npp",
+        "name": "InfluxDB Thermo",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://npp-influxdb:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "a99d4f15ff1d9725",
+        "type": "telegram bot",
+        "botname": "NPP bot",
+        "usernames": "",
+        "chatids": "$(CHAT_ID)",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "97afab299e227c34",
+        "type": "global-config",
+        "env": [
+            {
+                "name": "ACCESS_TOKEN",
+                "value": "8440779636:AAH-i5TREfcjyDr1_-CQ19U4XcN3krd-yn8",
+                "type": "str"
+            },
+            {
+                "name": "CHAT_ID",
+                "value": "1881480328",
+                "type": "num"
+            }
+        ],
+        "modules": {}
+    },
+    {
+        "id": "7406e481f9c5e8b1",
+        "type": "mqtt in",
+        "z": "43a873bd561270b5",
+        "name": "",
+        "topic": "npp/reactor-coolant/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3e670c6493b8376d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "81afaf987d11f434",
+                "798ae18932350d91"
+            ]
+        ]
+    },
+    {
+        "id": "937a421df93d6573",
+        "type": "influxdb out",
+        "z": "43a873bd561270b5",
+        "influxdb": "3d40a9f54b8ab11f",
+        "name": "",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "univaq",
+        "bucket": "npp",
+        "x": 600,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "600b68289e366c50",
+        "type": "telegram sender",
+        "z": "43a873bd561270b5",
+        "name": "NPP bot",
+        "bot": "a99d4f15ff1d9725",
+        "haserroroutput": true,
+        "outputs": 2,
+        "x": 560,
+        "y": 300,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e88a80638ef84fc1",
+        "type": "debug",
+        "z": "43a873bd561270b5",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "81afaf987d11f434",
+        "type": "function",
+        "z": "43a873bd561270b5",
+        "name": "JSON objects",
+        "func": "// Extract field name from topic\nlet field = msg.topic.split(\"/\").pop();\n\n// Accumulate fields\nlet row = flow.get(\"row\") || {};\nrow[field] = Number(msg.payload);\nflow.set(\"row\", row);\n\n// Expected fields\nconst expected = [\n  \"t_sec\", \"P\", \"TAVG\", \"LVPZ\", \"LVCR\",\n  \"PWNT\", \"PRB\", \"CNH2\", \"RM1\", \"DWB\", \"DTHY\"\n];\n\n// Wait until row complete\nif (!expected.every(k => row[k] !== undefined)) {\n  return null;\n}\n\n// ✔ REQUIRED BY influxdb out node\nmsg.measurement = \"reactor-coolant\";\n\n// ✔ payload must be ONLY numeric fields\nmsg.payload = row;\n\n// optional tags\nmsg.tags = {\n  source: \"simulator\"\n};\n\n// reset for next cycle\nflow.set(\"row\", {});\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "937a421df93d6573"
+            ]
+        ]
+    },
+    {
+        "id": "798ae18932350d91",
+        "type": "function",
+        "z": "43a873bd561270b5",
+        "name": "Alert",
+        "func": "// ---- Store latest values ----\nif (msg.topic.endsWith(\"/P\")) {\n    flow.set(\"pressure\", Number(msg.payload));\n    return null;\n}\n\nif (msg.topic.endsWith(\"/RM1\")) {\n    flow.set(\"radiation-monitor\", Number(msg.payload));\n    return null;\n}\n\n// ---- Read stored values ----\nconst pressure = flow.get(\"pressure\");\nconst radiation = flow.get(\"radiation-monitor\");\n\nif (pressure === undefined || radiation === undefined) {\n    return null;\n}\n\n// ---- Round values ----\nconst P = Number(pressure.toFixed(4));\nconst RM1 = Number(radiation.toFixed(4));\n\n// ---- Alert condition ----\nconst alertCondition =\n    (P < 148.00 && RM1 > 0.01) ||  // Pressure drop + small RM1 rise\n    (RM1 > 0.14);               // Critical RM1 spike\n\nif (!alertCondition) {\n    return null;\n}\n\n// ---- Cooldown logic (3 minutes) ----\nconst now = Date.now();\nconst lastAlert = flow.get(\"lastAlertTime\") || 0;\nconst COOLDOWN = 1 * 60 * 1000; // 1 minutes\n\nif (now - lastAlert < COOLDOWN) {\n    return null; // still in cooldown\n}\n\n// ---- Save alert time ----\nflow.set(\"lastAlertTime\", now);\n\n// ---- Telegram message ----\nlet alertMessage = \"\";\n\nif (P < 148.00 && RM1 > 0.01) {\n    alertMessage = `Loss of coolant system detected!\nRM1: ${RM1} CPM\nPressure: ${P} bar\nTriggered: Pressure drop and Radiation increases`;\n} else if (RM1 > 0.14) {\n    alertMessage = `Loss of coolant system detected!!\nPressure: ${P} bar\nRM1: ${RM1} CPM\n\nTriggered: Radiation increases inside the containment`;\n}\n\nmsg.payload = {\n    chatId: 1881480328,   // Replace with your Telegram chat ID\n    type: \"message\",\n    content: alertMessage\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 300,
+        "wires": [
+            [
+                "600b68289e366c50"
+            ]
+        ]
+    },
+    {
+        "id": "e5d9db989801d404",
+        "type": "function",
+        "z": "a24ce6732882ebc7",
+        "name": "function 3",
+        "func": "msg.payload = {\n    chatId: 1881480328,        // your user chat ID\n    type: \"message\",           // must be \"message\"\n    content: \"Testing...\"      // actual text to send\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48ae391753e0f3f3",
+        "type": "inject",
+        "z": "a24ce6732882ebc7",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "e5d9db989801d404"
+            ]
+        ]
+    },
+    {
+        "id": "7ee34bc47850cbc0",
+        "type": "mqtt in",
+        "z": "a24ce6732882ebc7",
+        "name": "",
+        "topic": "npp/data/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "3e670c6493b8376d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d3ac8b9673fb0a1b",
+        "type": "json",
+        "z": "a24ce6732882ebc7",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 470,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ba0319a19e821b2",
+        "type": "function",
+        "z": "a24ce6732882ebc7",
+        "name": "function 4",
+        "func": "let data = msg.payload;\n\n// If payload is a string, parse it\nif (typeof data === \"string\") {\n    try {\n        data = JSON.parse(data);\n    } catch (err) {\n        node.error(\"JSON parse failed: \" + data, msg);\n        return null;\n    }\n}\n\n// Now data is guaranteed to be an object\nconst temp = Number(data.temperature);\nconst pressure = Number(data.pressure);\n\n// Validate numeric values\nif (isNaN(temp) || isNaN(pressure)) {\n    node.error(\"Invalid sensor values: \" + JSON.stringify(data), msg);\n    return null;\n}\n\n// Prepare payload for InfluxDB\nmsg.payload = {\n    temperature: temp,\n    pressure: pressure\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 440,
+        "wires": [
+            [
+                "02ad30cccc1010b8"
+            ]
+        ]
+    },
+    {
+        "id": "02ad30cccc1010b8",
+        "type": "influxdb out",
+        "z": "a24ce6732882ebc7",
+        "influxdb": "3d40a9f54b8ab11f",
+        "name": "",
+        "measurement": "thermo_hydraulic",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "univaq",
+        "bucket": "npp",
+        "x": 880,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "cb45d1d9a07f347e",
+        "type": "function",
+        "z": "a24ce6732882ebc7",
+        "name": "function 5",
+        "func": "// If payload is a string, try to parse it as JSON\nif (typeof msg.payload === \"string\") {\n    try {\n        msg.payload = JSON.parse(msg.payload);\n    } catch (e) {\n        node.warn(\"Payload is not valid JSON\");\n        return null;\n    }\n}\n\n// Ensure payload is an object now\nif (typeof msg.payload !== \"object\" || msg.payload === null) {\n    node.warn(\"Payload is not an object\");\n    return null;\n}\n\nconst temp = Number(msg.payload.temperature);\nconst pressure = Number(msg.payload.pressure);\n\n// Validate values\nif (isNaN(temp) || isNaN(pressure)) {\n    node.warn(\"Temperature or pressure missing\");\n    return null;\n}\n\n// Alert condition\nif (temp > 70 || pressure > 120) {\n    // Format message as object for Telegram node\n    msg.payload = {\n        chatId: 1881480328,  // <-- your user chat ID\n        type: \"message\",     \n        content: `ALERT! Thermo-Hydraulic values high\nTemperature: ${temp} °C\nPressure: ${pressure} kPa`\n    };\n    return msg; // Only return if alert should be sent\n}\n\n// No alert → stop flow\nreturn null;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 520,
+        "wires": [
+            [
+                "0638949c147902c7"
+            ]
+        ]
+    },
+    {
+        "id": "0638949c147902c7",
+        "type": "telegram sender",
+        "z": "a24ce6732882ebc7",
+        "name": "NPP bot",
+        "bot": "a99d4f15ff1d9725",
+        "haserroroutput": true,
+        "outputs": 2,
+        "x": 840,
+        "y": 520,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8bc142bbeb97add2",
+        "type": "debug",
+        "z": "a24ce6732882ebc7",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 320,
+        "wires": []
+    }
+]

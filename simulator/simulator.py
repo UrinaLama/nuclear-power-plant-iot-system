@@ -6,17 +6,17 @@ import time
 
 import paho.mqtt.client as mqtt
 
+csv_dir = 'data/'
 
-def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, flags, rc, properties):
     if rc == 0:
         print("Connected to MQTT Broker!")
     else:
         print(f"Failed to connect, return code {rc}")
 
-
 def get_csv():
     csv_files = [
-        f for f in os.listdir('/data')
+        f for f in os.listdir(csv_dir)
         if f.endswith('.csv')
     ]
 
@@ -33,17 +33,18 @@ def get_csv():
 
 def publish(client, csv_path):
     with open(csv_path, 'r') as f:
+        source = os.path.basename(csv_path).replace('.csv', '')  # normal / loca
         reader = csv.DictReader(f)
 
         for idx, row in enumerate(reader):
             for key, val in row.items():
-                if key is 'time':
+                if key == 'time':
                     continue
 
-                topic = f"{os.getenv('MQTT_TOPIC', 'data')}/{key}"
+                topic = f"{os.getenv('MQTT_TOPIC', 'npp/reactor-coolant')}/{key}"
 
                 client.publish(topic, val)
-
+                logging.info(f"Published [{source}] {topic}: {val}")
             time.sleep(5)
 
 
@@ -55,7 +56,7 @@ def simulate():
 
     client.on_connect = on_connect
     client.connect(
-        host=os.getenv('MQTT_HOST', 'mosquitto'),
+        host=os.getenv('MQTT_HOST', 'npp-mosquitto'),
         port=int(os.getenv('MQTT_PORT', '1883')),
         keepalive=60
     )
@@ -65,7 +66,7 @@ def simulate():
     try:
         while True:
             csv_file = get_csv()
-            csv_path = os.path.join('./data', csv_file)
+            csv_path = os.path.join(csv_dir, csv_file)
 
             publish(client, csv_path)
     except Exception as e:

@@ -47,6 +47,7 @@ services:
   influxdb:
     container_name: npp-influxdb
     image: influxdb:2.8.0
+    restart: always
     ports:
       - "8086:8086"
     volumes:
@@ -92,9 +93,9 @@ services:
     depends_on:
       - mosquitto
     environment:
-      - MQTT_HOST=mosquitto
+      - MQTT_HOST=npp-mosquitto
       - MQTT_PORT=1883
-      - MQTT_TOPIC=data
+      - MQTT_TOPIC=npp/reactor-coolant
     volumes:
       - ./simulator/data:/data
     networks:
