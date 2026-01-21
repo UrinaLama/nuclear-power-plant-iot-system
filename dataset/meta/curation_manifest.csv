@@ -1,0 +1,5 @@
+source,scenario,run,input,output,time_col,kept_cols
+operation,LOCA,001,data\01_subset\operation\LOCA\1.csv,data\02_curated\operation\scenario=LOCA\run=001.csv,TIME,P;TAVG;LVPZ;LVCR;PWNT;PRB;CNH2;RM1;DWB;DTHY
+operation,Normal,001,data\01_subset\operation\Normal\1.csv,data\02_curated\operation\scenario=Normal\run=001.csv,TIME,P;TAVG;LVPZ;LVCR;PWNT;PRB;CNH2;RM1;DWB;DTHY
+dose,LOCA,1dose,data\01_subset\dose\LOCA\1dose.csv,data\02_curated\dose\scenario=LOCA\run=1dose.csv,TIME,
+dose,Normal,1dose,data\01_subset\dose\Normal\1dose.csv,data\02_curated\dose\scenario=Normal\run=1dose.csv,TIME,
