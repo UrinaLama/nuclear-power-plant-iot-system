@@ -57,7 +57,14 @@ The configuration of the system is mainly contained in the docker-compose.yml fi
 - [Igli Balla](https://github.com/Igli333)
 - [Mahira Ibnath Joytu](https://github.com/Joytu)
 
-<!-- Badge link definitions -->
+<!-- Markdown Link and images-->
+[Docker.com]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
+[Python.org]: https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white
+[MQTT.com]: https://img.shields.io/badge/MQTT-660066?style=for-the-badge&logo=eclipsemosquitto&logoColor=white
+[Nodered.org]: https://img.shields.io/badge/Node--RED-8F0000?style=for-the-badge&logo=nodered&logoColor=white
+[InfluxDB.com]: https://img.shields.io/badge/InfluxDB-22ADF6?style=for-the-badge&logo=influxdb&logoColor=white
+[Grafana.com]: https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white
+[Telegram.org]: https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white
 [Docker-url]: https://www.docker.com/
 [Python-url]: https://www.python.org/
 [MQTT-url]: https://mqtt.org/
