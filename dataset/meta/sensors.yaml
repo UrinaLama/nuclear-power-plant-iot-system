@@ -1,0 +1,13 @@
+operation:
+  - TIME
+  - P
+  - TAVG
+  - LVPZ
+  - LVCR
+  - PWNT
+  - PRB
+  - CNH2
+  - RM1
+  - DWB
+  - DTHY
+dose: []
