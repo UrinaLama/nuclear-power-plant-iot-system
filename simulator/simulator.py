@@ -44,7 +44,7 @@ def publish(client, csv_path):
                 topic = f"{os.getenv('MQTT_TOPIC', 'npp/reactor-coolant')}/{key}"
 
                 client.publish(topic, val)
-                logging.info(f"Published [{source}] {topic}: {val}")
+                # logging.info(f"Published [{source}] {topic}: {val}")
             time.sleep(5)
 
 
