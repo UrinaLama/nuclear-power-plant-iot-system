@@ -51,6 +51,25 @@ The configuration of the system is mainly contained in the docker-compose.yml fi
 * 8086 for InfluxDB
 * 1886 for Node-RED
 
+### Telegram Configuration
+
+1. Create a Telegram bot
+   - Create/open a telegram account 
+   - Search for @botfather in the Telegram search bar
+   - Start a chat with @BotFather.
+   - Type `/newbot` and follow the prompts to set up a new bot. Save the bot token (looks like `5678910:AAC_Xmw...`).
+2. Obtain your ChatId
+   - One way to get the chat id is to visit the url:
+https://api.telegram.org/bot<YourBOTToken>/getUpdates and look for chat id on the returned json. Alternatively, you can
+search for “@myidbot” on Telegram, start a conversation, and type `/getid`,
+the bot will respond with your chatId. 
+3. Configure environment in node-red
+
+         TELEGRAM_BOT_TOKEN=your_bot_token_here
+         TELEGRAM_CHAT_ID=your_chat_id_here
+
+4. Restart docker compose for the environment variables to take an effect. If its successful, alert will be sent to Telegram.
+
 ## Developed by
 
 - [Urina Lama](https://github.com/UrinaLama/)
