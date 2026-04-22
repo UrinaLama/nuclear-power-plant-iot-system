@@ -58,96 +58,96 @@
         "id": "a6bae3ce087b14bb",
         "type": "ui_base",
         "theme": {
-            "name": "theme-light",
+            "angularTheme": {
+                "accents": "blue",
+                "background": "grey",
+                "palette": "light",
+                "primary": "indigo",
+                "warn": "red"
+            },
+            "customTheme": {
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "default": "#4B7930",
+                "name": "Untitled Theme 1"
+            },
+            "darkTheme": {
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "default": "#097479",
+                "edited": false
+            },
             "lightTheme": {
-                "default": "#0094CE",
                 "baseColor": "#0094CE",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "default": "#0094CE",
                 "edited": true,
                 "reset": false
             },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-            },
+            "name": "theme-light",
             "themeState": {
                 "base-color": {
                     "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#0094ce",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
+                    "edited": false,
+                    "value": "#0094CE"
                 },
                 "base-font": {
                     "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                },
+                "group-backgroundColor": {
+                    "edited": false,
+                    "value": "#ffffff"
+                },
+                "group-borderColor": {
+                    "edited": false,
+                    "value": "#ffffff"
+                },
+                "group-textColor": {
+                    "edited": false,
+                    "value": "#1bbfff"
+                },
+                "page-backgroundColor": {
+                    "edited": false,
+                    "value": "#fafafa"
+                },
+                "page-sidebar-backgroundColor": {
+                    "edited": false,
+                    "value": "#ffffff"
+                },
+                "page-titlebar-backgroundColor": {
+                    "edited": false,
+                    "value": "#0094CE"
+                },
+                "widget-backgroundColor": {
+                    "edited": false,
+                    "value": "#0094ce"
+                },
+                "widget-borderColor": {
+                    "edited": false,
+                    "value": "#ffffff"
+                },
+                "widget-textColor": {
+                    "edited": false,
+                    "value": "#111111"
                 }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey",
-                "palette": "light"
             }
         },
         "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
             "allowSwipe": "false",
-            "lockMenu": "false",
             "allowTempTheme": "true",
             "dateFormat": "DD/MM/YYYY",
+            "hideToolbar": "false",
+            "lockMenu": "false",
+            "name": "Node-RED Dashboard",
             "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
                 "cx": 6,
                 "cy": 6,
+                "gx": 6,
+                "gy": 6,
                 "px": 0,
-                "py": 0
+                "py": 0,
+                "sx": 48,
+                "sy": 48
             }
         }
     },
@@ -363,7 +363,7 @@
         "type": "function",
         "z": "43a873bd561270b5",
         "name": "Alert",
-        "func": "// ---- Store latest values ----\nif (msg.topic.endsWith(\"/P\")) {\n    flow.set(\"pressure\", Number(msg.payload));\n    return null;\n}\n\nif (msg.topic.endsWith(\"/RM1\")) {\n    flow.set(\"radiation-monitor\", Number(msg.payload));\n    return null;\n}\n\n// ---- Read stored values ----\nconst pressure = flow.get(\"pressure\");\nconst radiation = flow.get(\"radiation-monitor\");\n\nif (pressure === undefined || radiation === undefined) {\n    return null;\n}\n\n// ---- Round values ----\nconst P = Number(pressure.toFixed(4));\nconst RM1 = Number(radiation.toFixed(4));\n\n// ---- Alert condition ----\nconst alertCondition =\n    (P < 148.00 && RM1 > 0.01) ||  // Pressure drop + small RM1 rise\n    (RM1 > 0.14);               // Critical RM1 spike\n\nif (!alertCondition) {\n    return null;\n}\n\n// ---- Cooldown logic (3 minutes) ----\nconst now = Date.now();\nconst lastAlert = flow.get(\"lastAlertTime\") || 0;\nconst COOLDOWN = 1 * 60 * 1000; // 1 minutes\n\nif (now - lastAlert < COOLDOWN) {\n    return null; // still in cooldown\n}\n\n// ---- Save alert time ----\nflow.set(\"lastAlertTime\", now);\n\n// ---- Telegram message ----\nlet alertMessage = \"\";\n\nif (P < 148.00 && RM1 > 0.01) {\n    alertMessage = `Loss of coolant system detected!\nRM1: ${RM1} CPM\nPressure: ${P} bar\nTriggered: Pressure drop and Radiation increases`;\n} else if (RM1 > 0.14) {\n    alertMessage = `Loss of coolant system detected!!\nPressure: ${P} bar\nRM1: ${RM1} CPM\n\nTriggered: Radiation increases inside the containment`;\n}\n\nmsg.payload = {\n    chatId: 1881480328,   // Replace with your Telegram chat ID\n    type: \"message\",\n    content: alertMessage\n};\n\nreturn msg;\n",
+        "func": "const T = global.get(\"thresholds\");\n\n// ---- Store latest values ----\nif (msg.topic.endsWith(\"/P\")) {\n    flow.set(\"pressure\", Number(msg.payload));\n    return null;\n}\n\nif (msg.topic.endsWith(\"/RM1\")) {\n    flow.set(\"radiation-monitor\", Number(msg.payload));\n    return null;\n}\n\n// ---- Read stored values ----\nconst pressure = flow.get(\"pressure\");\nconst radiation = flow.get(\"radiation-monitor\");\n\nif (pressure === undefined || radiation === undefined) {\n    return null;\n}\n\n// ---- Round values ----\nconst P = Number(pressure.toFixed(4));\nconst RM1 = Number(radiation.toFixed(4));\n\n// ---- Alert condition ----\nconst alertCondition =\n    (P < T.pressure.coolantLossMin && RM1 > T.radiation.minRise) ||\n    (RM1 > T.radiation.criticalSpike);\n\nif (!alertCondition) {\n    return null;\n}\n\n// ---- Cooldown logic (3 minutes) ----\nconst now = Date.now();\nconst lastAlert = flow.get(\"lastAlertTime\") || 0;\n\nif (now - lastAlert < T.cooldown) {\n    return null; // still in cooldown\n}\n\n// ---- Save alert time ----\nflow.set(\"lastAlertTime\", now);\n\n// ---- Telegram message ----\nlet alertMessage = \"\";\nif (P < T.pressure.coolantLossMin && RM1 > T.radiation.minRise) {\n    alertMessage = `Loss of coolant system detected!\\nRM1: ${RM1} CPM\\nPressure: ${P} bar\\nTriggered: Pressure drop and Radiation increases`;\n} else if (RM1 > T.radiation.criticalSpike) {\n    alertMessage = `Loss of coolant system detected!!\\nPressure: ${P} bar\\nRM1: ${RM1} CPM\\nTriggered: Radiation increases inside the containment`;\n}\n\nmsg.payload = {\n    chatId: env.get(\"CHAT_ID\"),   // Replace with your Telegram chat ID\n    type: \"message\",\n    content: alertMessage\n};\n\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -377,6 +377,102 @@
                 "600b68289e366c50"
             ]
         ]
+    },
+    {
+        "id": "442da39c3704d8fc",
+        "type": "function",
+        "z": "43a873bd561270b5",
+        "name": "Set thresholds",
+        "func": "// \"Set thresholds\" function node\nglobal.set(\"thresholds\", {\n    pressure: {\n        coolantLossMin: 148.00,   // bar — below this = pressure drop alert\n    },\n    radiation: {\n        minRise: 0.01,            // CPM — small rise paired with pressure drop\n        criticalSpike: 0.14,      // CPM — standalone critical spike\n    },\n    cooldown: 1 * 60 * 1000      // ms — alert cooldown period\n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "65a3d51e1a1f48f0",
+        "type": "inject",
+        "z": "43a873bd561270b5",
+        "name": "Inject Thresholds",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 60,
+        "wires": [
+            [
+                "442da39c3704d8fc"
+            ]
+        ]
+    },
+    {
+        "id": "90556b43462ac600",
+        "type": "http in",
+        "z": "43a873bd561270b5",
+        "name": "HTTP GET /thresholds",
+        "url": "/thresholds",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 480,
+        "wires": [
+            [
+                "a571f6d54a4a949e"
+            ]
+        ]
+    },
+    {
+        "id": "a571f6d54a4a949e",
+        "type": "function",
+        "z": "43a873bd561270b5",
+        "name": "Serve thresholds",
+        "func": "const T = global.get(\"thresholds\");\n\nmsg.payload = T;\nmsg.headers = { \"Content-Type\": \"application/json\" };\nmsg.statusCode = 200;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 480,
+        "wires": [
+            [
+                "a68b596b0c0c4aef"
+            ]
+        ]
+    },
+    {
+        "id": "a68b596b0c0c4aef",
+        "type": "http response",
+        "z": "43a873bd561270b5",
+        "name": "http response",
+        "statusCode": "",
+        "headers": {},
+        "x": 640,
+        "y": 480,
+        "wires": []
     },
     {
         "id": "e5d9db989801d404",
